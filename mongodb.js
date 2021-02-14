@@ -22,56 +22,26 @@ MongoClinet.connect(
     }
 
     const db = client.db(databaseName);
-    // db.collection('users').insertOne(
-    //   {
-    //     _id: id,
-    //     name: 'Mike',
-    //     age: 32,
-    //   },
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log('Unable to insert user');
-    //     }
 
-    //     console.log(result.ops);
-    //   }
-    // );
-    // db.collection('users').insertMany(
-    //   [
-    //     {
-    //       name: 'Sami',
-    //       age: 2,
-    //     },
-    //     {
-    //       name: 'Shosho',
-    //       age: 24,
-    //     },
-    //   ],
-    //   (error, resul) => {
-    //     if (error) {
-    //       return console.log('Unable to insert users');
-    //     }
-    //     console.log(resul.ops);
-    //   }
-    // );
-    // db.collection('tasks').insertMany(
-    //   [
-    //     {
-    //       description: 'Add new item to my task',
-    //       completed: false,
-    //     },
-    //     {
-    //       description: 'Buy domain from google',
-    //       completed: true,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log('Unable to insert tasks');
-    //     }
+    // db.collection('users')
+    //   .deleteMany({ age: 30 })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    //     console.log(result.ops);
-    //   }
-    // );
+    db.collection('tasks')
+      .deleteOne({
+        _id: new ObjectID('6025c2cca0dbbb221a015ab3'),
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //////
   }
 );
