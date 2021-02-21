@@ -1,14 +1,17 @@
 require('../src/db/mongoose');
+const { count } = require('../src/models/task');
 const Tasks = require('../src/models/task');
 
-Tasks.findByIdAndDelete('60287d0a97b55e40275bf35d')
-  .then((task) => {
-    console.log(task);
-    return Tasks.countDocuments({ completed: false });
+const deleteById = async (id) => {
+  const deleteId = await Tasks.findByIdAndDelete(id);
+  const countUncompleted = await Tasks.countDocuments({ completed: false });
+  return countUncompleted;
+};
+
+deleteById('602c133cb2363a66b957e058', false)
+  .then((countUncompleted) => {
+    console.log(countUncompleted);
   })
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log(error);
+  .catch((err) => {
+    console.log(err);
   });
